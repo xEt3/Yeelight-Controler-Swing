@@ -200,8 +200,8 @@ public class Panel {
 
 		JButton btnColor = new JButton("");
 		btnColor.setForeground(Color.BLACK);
-		btnColor.setSelectedIcon(new ImageIcon("resources/bombillaka.png"));
-		btnColor.setIcon(new ImageIcon("resources/bombillaka.png"));
+		btnColor.setSelectedIcon(new ImageIcon(this.getClass().getResource("bombillaka.png")));
+		btnColor.setIcon(new ImageIcon(this.getClass().getResource("bombillaka.png")));
 		btnColor.setBackground(Color.BLACK);
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
