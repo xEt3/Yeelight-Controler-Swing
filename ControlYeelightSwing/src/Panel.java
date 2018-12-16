@@ -4,9 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 
@@ -20,11 +17,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import com.mollin.yapi.YeelightDevice;
-import com.mollin.yapi.exception.YeelightResultErrorException;
-import com.mollin.yapi.exception.YeelightSocketException;
 
 import javax.swing.JEditorPane;
-import javax.swing.JSeparator;
+
 import java.awt.Color;
 
 public class Panel {
@@ -32,7 +27,7 @@ public class Panel {
 	public JFrame frame;
 	public Color colorPrincipal = null;
 	public YeelightDevice device = null;
-	//int Intensidad = 0;
+
 
 	/**
 	 * Launch the application.
