@@ -171,69 +171,40 @@ public class Panel {
 		});
 		frame.getContentPane().add(sliderIntensidad, BorderLayout.SOUTH);
 
+		
 		/**
 		 * Panel Colores
 		 */
-
-		ActionListener cambiarColor = new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JButton btnEvaluar = (JButton) e.getSource();
-
-				try {
-
-					device.setRGB(btnEvaluar.getBackground().getRed(), btnEvaluar.getBackground().getGreen(),
-							btnEvaluar.getBackground().getBlue());
-
-				} catch (Exception k) {
-
-					btnConectar.setBackground(Color.red);
-				}
-
-			}
-		};
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(0, 0, 0));
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
 
-		JButton btnColor = new JButton("");
-		btnColor.setForeground(Color.BLACK);
-		btnColor.setSelectedIcon(new ImageIcon(this.getClass().getResource("bombillaka.png")));
-		btnColor.setIcon(new ImageIcon(this.getClass().getResource("bombillaka.png")));
-		btnColor.setBackground(Color.BLACK);
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup().addGap(237)
-						.addComponent(btnColor, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(258, Short.MAX_VALUE)));
-		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup().addGap(67)
-						.addComponent(btnColor, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(90, Short.MAX_VALUE)));
-		panel_1.setLayout(gl_panel_1);
-		btnColor.addActionListener(new ActionListener() {
+		JColorChooser PaletaColor = new JColorChooser();
 
+		PaletaColor.setForeground(Color.BLACK);
+
+		PaletaColor.setBackground(Color.BLACK);
+		panel_1.add(PaletaColor, "1, 1, right, bottom");
+		
+		JButton btnCambiar = new JButton("Cambiar Color");
+		panel_1.add(btnCambiar);
+		btnCambiar.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Color colorSeleccionado = JColorChooser.showDialog(new JColorChooser(), "Elige color", Color.RED);
+			Color colorSeleccionado = PaletaColor.getColor();
+			try {
 
-				btnColor.setBackground(colorSeleccionado);
+				device.setRGB(colorSeleccionado.getRed(), colorSeleccionado.getGreen(),
+						colorSeleccionado.getBlue());
 
-				try {
+			} catch (Exception e) {
 
-					device.setRGB(colorSeleccionado.getRed(), colorSeleccionado.getGreen(),
-							colorSeleccionado.getBlue());
-
-				} catch (Exception e) {
-
-					btnConectar.setBackground(Color.red);
-				}
-
+				btnConectar.setBackground(Color.red);
+			}
 			}
 		});
-
 	}
-
 }
+
