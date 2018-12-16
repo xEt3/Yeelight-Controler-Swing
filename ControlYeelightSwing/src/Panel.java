@@ -3,7 +3,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,7 +61,7 @@ public class Panel {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 582, 344);
+		frame.setBounds(100, 100, 778, 450);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		/**
@@ -137,7 +143,7 @@ public class Panel {
 		
 		// Intensidad de brillo
 		
-		JSlider sliderIntensidad = new JSlider();
+		JSlider sliderIntensidad = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
 		
 		sliderIntensidad.addChangeListener(new ChangeListener() {
 			
@@ -175,56 +181,52 @@ public class Panel {
 				
 			}
 		};
+		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(0, 0, 0));
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new GridLayout(2, 2, 0, 0));
 		
-		JSeparator separator = new JSeparator();
-		separator.setBackground(new Color(255, 255, 255));
-		panel_1.add(separator);
-		
-		JButton btnNegro = new JButton("");
-		btnNegro.setBackground(Color.BLACK);
-		panel_1.add(btnNegro);
-		btnNegro.addActionListener(cambiarColor);
-		
-		JButton btnRojo = new JButton("");
-		btnRojo.setBackground(Color.RED);
-		panel_1.add(btnRojo);
-		btnRojo.addActionListener(cambiarColor);
-		
-		JButton btnVerde = new JButton("");
-		btnVerde.setBackground(Color.GREEN);
-		panel_1.add(btnVerde);
-		btnVerde.addActionListener(cambiarColor);
-		
-		JButton btnAzul = new JButton("");
-		btnAzul.setBackground(new Color(30, 144, 255));
-		panel_1.add(btnAzul);
-		btnAzul.addActionListener(cambiarColor);
-		
-		JSeparator separator_1 = new JSeparator();
-		panel_1.add(separator_1);
-		
-		JButton btnAmarillo = new JButton("");
-		btnAmarillo.setBackground(Color.YELLOW);
-		panel_1.add(btnAmarillo);
-		btnAmarillo.addActionListener(cambiarColor);
-		
-		JButton btnBlanco = new JButton("");
-		btnBlanco.setBackground(Color.WHITE);
-		panel_1.add(btnBlanco);
-		btnBlanco.addActionListener(cambiarColor);
-		
-		JButton btnRosa = new JButton("");
-		btnRosa.setBackground(new Color(255, 20, 147));
-		panel_1.add(btnRosa);
-		btnRosa.addActionListener(cambiarColor);
-		
-		JButton btnLila = new JButton("");
-		btnLila.setBackground(new Color(148, 0, 211));
-		panel_1.add(btnLila);
-		btnLila.addActionListener(cambiarColor);
+		JButton btnColor = new JButton("");
+		btnColor.setForeground(Color.BLACK);
+		btnColor.setSelectedIcon(new ImageIcon("/home/nacho/Escritorio/bombillaka.png"));
+		btnColor.setIcon(new ImageIcon("/home/nacho/Escritorio/bombillaka.png"));
+		btnColor.setBackground(Color.BLACK);
+		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+		gl_panel_1.setHorizontalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(237)
+					.addComponent(btnColor, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(258, Short.MAX_VALUE))
+		);
+		gl_panel_1.setVerticalGroup(
+			gl_panel_1.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGap(67)
+					.addComponent(btnColor, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(90, Short.MAX_VALUE))
+		);
+		panel_1.setLayout(gl_panel_1);
+		btnColor.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				Color colorSeleccionado = JColorChooser.showDialog(new JColorChooser(), "Elege color", Color.RED);
+				
+				btnColor.setBackground(colorSeleccionado);
+				
+				try {
+
+					device.setRGB(colorSeleccionado.getRed(), colorSeleccionado.getGreen(), colorSeleccionado.getBlue());
+
+				} catch (Exception e) {
+
+					btnConectar.setBackground(Color.red);
+				}
+				
+			}
+		});
+
 
 	}
 
