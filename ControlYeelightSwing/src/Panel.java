@@ -90,7 +90,6 @@ public class Panel {
 					btnConectar.setBackground(Color.green);
 
 				} catch (Exception e1) {
-					System.out.println(ipAdd.getText());
 					btnConectar.setBackground(Color.RED);
 				}
 			}
@@ -155,8 +154,7 @@ public class Panel {
 							device.setBrightness(sliderIntensidad.getValue());
 							//Intensidad = sliderIntensidad.getValue();
 						} catch (Exception k) {
-							System.out.println(sliderIntensidad.getValue());
-							//Intensidad = sliderIntensidad.getValue();
+		
 						}
 
 					}}
