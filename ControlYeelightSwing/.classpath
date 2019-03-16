@@ -6,6 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="/home/nacho/Descargas/yapi-master/jar/yapi-1.0-all.jar"/>
+	<classpathentry kind="lib" path="Libreria/yapi-1.0-all.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
